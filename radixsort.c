@@ -71,7 +71,7 @@ int select_digit(int num, int pos)
  */
 void counting_sort(int a[], const int SIZE, int k, int d)
 {
-    queue *bucket[SIZE];
+    queue **bucket = (queue**)malloc(sizeof(queue*) * k);
 
     int i;
     for(i = 0; i < k; i++)
@@ -93,6 +93,8 @@ void counting_sort(int a[], const int SIZE, int k, int d)
             j++;
         }
     }
+
+    free(bucket);
 
     return;
 }
