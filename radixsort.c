@@ -34,7 +34,7 @@ int dequeue(struct node **q);
 int is_empty(struct node *q);
 void print_queue(struct node *q);
 
-const int WORD_LEN = 5;
+const int WORD_LEN = 4;
 const int SIZE = 20;
 
 int main()
@@ -44,22 +44,16 @@ int main()
     int a[SIZE];
     int i = 0;
     for(i = 0; i < SIZE; i++)
-    {
         a[i] = (rand() % (int)pow(10, WORD_LEN));
-    }
 
     for (i = 0; i < SIZE; i++)
-    {
-        printf("%d ", a[i]);
-    }
+        printf("%0*d ", WORD_LEN, a[i]);
     printf("\n");
 
     radix_sort(a, SIZE, 10, WORD_LEN);
 
     for (i = 0; i < SIZE; i++)
-    {
-        printf("%d ", a[i]);
-    }
+        printf("%0*d ", WORD_LEN, a[i]);
     printf("\n");
 
     return 0;
@@ -76,14 +70,10 @@ void counting_sort(int a[], const int SIZE, int k, int d)
 
     int i;
     for(i = 0; i < k; i++)
-    {
         bucket[i] = NULL;
-    }
 
     for (i = 0; i < SIZE; i++)
-    {
         enqueue(&bucket[select_digit(a[i], d)], a[i]);
-    }
 
     int j = 0;
     for (i = 0; i < k; i++)
@@ -96,7 +86,6 @@ void counting_sort(int a[], const int SIZE, int k, int d)
     }
 
     free(bucket);
-
     return;
 }
 
@@ -104,9 +93,7 @@ void radix_sort(int a[], int size, int base, int word_length)
 {
     int i;
     for (i = 0; i < word_length; i++)
-    {
         counting_sort(a, size, base, i);
-    }
 }
 
 struct node *create_node(int x)
