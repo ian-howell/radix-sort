@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 typedef struct node
 {
@@ -10,6 +11,19 @@ typedef struct node
 
 int select_digit(int num, int pos);
 
+/* Counting Sort
+ *
+ * Sort an array of integers
+ *
+ * Param a: the array to sort
+ * Type: int[]
+ * Param SIZE: the number of elements in a
+ * Type: const int
+ * Param k: the number of unique numbers in a
+ * Type: int
+ * Param d: the place value of the digit to sort on. Used in radix sort
+ * Type: int
+ */
 void counting_sort(int a[], int size, int base, int d);
 
 void radix_sort(int a[], int size, int base, int word_length);
@@ -25,7 +39,7 @@ const int SIZE = 20;
 
 int main()
 {
-    srand(5);
+    srand(time(NULL));
 
     int a[SIZE];
     int i = 0;
@@ -56,19 +70,6 @@ int select_digit(int num, int pos)
     return (num / (int)pow(10, pos)) % 10;
 }
 
-/* Counting Sort
- *
- * Sort an array of integers
- *
- * Param a: the array to sort
- * Type: int[]
- * Param SIZE: the number of elements in a
- * Type: const int
- * Param k: the number of unique numbers in a
- * Type: int
- * Param d: the place value of the digit to sort on. Used in radix sort
- * Type: int
- */
 void counting_sort(int a[], const int SIZE, int k, int d)
 {
     queue **bucket = (queue**)malloc(sizeof(queue*) * k);
